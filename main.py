@@ -5,7 +5,6 @@ html_text = requests.get('https://www.nahkauf.de/angebote-im-markt').text
 soup = BeautifulSoup(html_text, 'lxml')
 
 offers = soup.find_all('div', class_='offer-detail')
-#todo: get all offer_details and loop
 for offer in offers:
     offer_category = offer.find('h3', class_='offer-detail__headline').text
     print(offer_category + ':')
