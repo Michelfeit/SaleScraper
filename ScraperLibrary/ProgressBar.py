@@ -1,7 +1,7 @@
 class ProgressBar:
     @staticmethod
-    def print_progressBar(iteration, total, prefix='', suffix='',
-                          decimals=1, length=100, fill='█', print_end="\r"):
+    def print_progress_bar(iteration, total, prefix='', suffix='',
+                           decimals=1, length=100, fill='█', print_end="\r"):
         """
         Call in a loop to create terminal progress bar
         @params:
@@ -17,7 +17,7 @@ class ProgressBar:
         percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
         filled_length = int(length * iteration // total)
         bar = fill * filled_length + '-' * (length - filled_length)
-        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end=print_end)
+        print(f'\r{prefix} |{bar}| {percent}% {suffix}', end='')
         # Print New Line on Complete
         if iteration == total:
             print()

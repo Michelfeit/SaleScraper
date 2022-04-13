@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.chrome.options import Options
+from ScraperLibrary.ProgressBar import ProgressBar
 
 
 _PATH = 'C:/Users/Miche/Documents/Repository/SaleScraper/webdrivers/chromedriver.exe'
@@ -54,30 +55,36 @@ class NKScraperSel:
         # i)    waiting for pop-up and accepting cookie policy
         WebDriverWait(driver, 10).until(
             expected_conditions.element_to_be_clickable((By.ID, COOKIE_BTN_ID))).click()
-        print('1/6')
+        ProgressBar.print_progress_bar(0, 5, prefix='Progress:', suffix='Complete', length=50, fill='#')
+        # print('1/6')
         # ii)   clicking on 'select-market' in the top right corner
         driver.find_element(By.XPATH, SELECT_MARKET_TOP_RIGHT_XPATH).click()
-        print('2/6')
+        ProgressBar.print_progress_bar(1, 5, prefix='Progress:', suffix='Complete', length=50, fill='#')
+        # print('2/6')
         # iii)  waiting for pop-up and clicking on 'select-market' button
         WebDriverWait(driver, 10).until(
             expected_conditions.element_to_be_clickable((By.XPATH, SELECT_MARKET_POP_UP_XPATH))).click()
-        print('3/6')
+        ProgressBar.print_progress_bar(2, 5, prefix='Progress:', suffix='Complete', length=50, fill='#')
+        # print('3/6')
         # iv)   waiting for search bar to appear and entering the zip code as well as the address
         input_space = WebDriverWait(driver, 10).until(
             expected_conditions.presence_of_element_located((By.XPATH, ZIP_INPUT_XPATH)))
         input_space.send_keys(ZIP_AND_ADDRESS)
         input_space.send_keys(Keys.RETURN)
-        print('4/6')
+        ProgressBar.print_progress_bar(3, 5, prefix='Progress:', suffix='Complete', length=50, fill='#')
+        # print('4/6')
         # v)    select correct market after entering zip
         time.sleep(0.5)
         WebDriverWait(driver, 10).until(
             expected_conditions.element_to_be_clickable((By.XPATH, SELECT_MARKET_AFTER_ZIP_XPATH))).click()
-        print('5/6')
+        ProgressBar.print_progress_bar(4, 5, prefix='Progress:', suffix='Complete', length=50, fill='#')
+        # print('5/6')
         # vi)  navigate to product page
         WebDriverWait(driver, 10).until(
             expected_conditions.element_to_be_clickable((
                 By.XPATH, PRODUCT_PAGE_NAVIGATOR_XPATH))).click()
-        print('6/6')
+        ProgressBar.print_progress_bar(5, 5, prefix='Progress:', suffix='Complete', length=50, fill='#')
+        # print('6/6')
 
     @staticmethod
     def _find_and_parse_offers(driver):
